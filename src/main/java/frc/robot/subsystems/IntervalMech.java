@@ -35,8 +35,7 @@ public abstract class IntervalMech extends SubsystemBase {
         this.timer = new Timer();
 
         this.running = false;
-        this.stop(); // initial reset
-
+        
         this.nextPeriod = determineNextPeriod();
     }
 
