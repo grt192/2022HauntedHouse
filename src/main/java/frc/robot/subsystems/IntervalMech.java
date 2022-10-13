@@ -20,8 +20,6 @@ public abstract class IntervalMech extends SubsystemBase {
     int nextPeriod;
 
     public IntervalMech(int startupDelay, int minPeriod, int maxPeriod, int holdDuration) {
-        CommandScheduler.getInstance().registerSubsystem(this);
-
         this.maxPeriod = maxPeriod;
         this.minPeriod = minPeriod;
 
@@ -40,7 +38,6 @@ public abstract class IntervalMech extends SubsystemBase {
     }
 
     public IntervalMech(int startupDelay, int period, int holdDuration) {
-        
         this(startupDelay, period, period, holdDuration);
     }
 

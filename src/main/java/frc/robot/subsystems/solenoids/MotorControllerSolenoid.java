@@ -1,13 +1,12 @@
 package frc.robot.subsystems.solenoids;
 
-import com.ctre.phoenix.motorcontrol.TalonSRXControlMode;
-import com.ctre.phoenix.motorcontrol.can.TalonSRX;
+import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 
 public class MotorControllerSolenoid implements SolenoidGroup {
-    TalonSRX motorController;
+    WPI_TalonSRX motorController;
 
     public MotorControllerSolenoid(int canID, boolean reverse) {
-        this.motorController = new TalonSRX(canID);
+        this.motorController = new WPI_TalonSRX(canID);
         this.motorController.setInverted(!reverse);
     }
 
@@ -17,7 +16,6 @@ public class MotorControllerSolenoid implements SolenoidGroup {
 
     @Override
     public void set(boolean extended) {
-        this.motorController.set(TalonSRXControlMode.PercentOutput, extended ? 1 : 0);
+        this.motorController.set(extended ? 1 : 0);
     }
-    
 }
