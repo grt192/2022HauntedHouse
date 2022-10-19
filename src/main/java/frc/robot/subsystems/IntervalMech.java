@@ -1,23 +1,18 @@
 package frc.robot.subsystems;
 
 import edu.wpi.first.wpilibj.Timer;
-import edu.wpi.first.wpilibj2.command.CommandScheduler;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
 public abstract class IntervalMech extends SubsystemBase {
-    
-    int maxPeriod, minPeriod;
-    int startupDelay;
-    int holdDuration;
+    private final int maxPeriod, minPeriod;
+    private final int startupDelay;
+    private final int holdDuration;
 
-    boolean firstLoop;
-    boolean hasStarted;
+    private final Timer startupTimer;
+    private final Timer intervalTimer;
 
-    Timer timer;
-
-    boolean running;
-
-    int nextPeriod;
+    private boolean running;
+    private int nextPeriod;
 
     public IntervalMech(int startupDelay, int minPeriod, int maxPeriod, int holdDuration) {
         this.maxPeriod = maxPeriod;
@@ -26,15 +21,14 @@ public abstract class IntervalMech extends SubsystemBase {
         this.startupDelay = startupDelay;
         this.holdDuration = holdDuration;
 
-        
-        this.firstLoop = false;
-        this.hasStarted = false;
-
-        this.timer = new Timer();
+        this.startupTimer = new Timer();
+        this.intervalTimer = new Timer();
 
         this.running = false;
-        
         this.nextPeriod = determineNextPeriod();
+
+        stop();
+        startupTimer.start();
     }
 
     public IntervalMech(int startupDelay, int period, int holdDuration) {
@@ -42,30 +36,18 @@ public abstract class IntervalMech extends SubsystemBase {
     }
 
     public void periodic() {
-        if (!firstLoop) {
-            timer.start();
-            stop(); // set to OFF position
-            firstLoop = true;
-        }
+        // Wait for startupDelay seconds before running
+        if (!startupTimer.hasElapsed(startupDelay)) return;
 
-        if (!hasStarted && timer.hasElapsed(startupDelay)) {
-            timer.reset();
-            hasStarted = true;
-        }
+        intervalTimer.start();
 
-        if (hasStarted) {
-            if (running && timer.hasElapsed(holdDuration)) {
-                running = false;
-                stop();
-                timer.reset();
-                
-                nextPeriod = determineNextPeriod();
-            } else if (!running && timer.hasElapsed(nextPeriod)) {
-                running = true;
-                run();
-                timer.reset();
-
-            }
+        if (running && intervalTimer.advanceIfElapsed(holdDuration)) {
+            running = false;
+            stop();            
+            nextPeriod = determineNextPeriod();
+        } else if (!running && intervalTimer.advanceIfElapsed(nextPeriod)) {
+            running = true;
+            run();
         }
     }
 
@@ -80,7 +62,6 @@ public abstract class IntervalMech extends SubsystemBase {
             return minPeriod;
         } else {
             int range = maxPeriod - minPeriod;
-
             return minPeriod + ((int) (Math.random() * range));
         }
     }
