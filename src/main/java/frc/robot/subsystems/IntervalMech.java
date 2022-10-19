@@ -44,6 +44,7 @@ public abstract class IntervalMech extends SubsystemBase {
     public void periodic() {
         if (!firstLoop) {
             timer.start();
+            stop(); // set to OFF position
             firstLoop = true;
         }
 
