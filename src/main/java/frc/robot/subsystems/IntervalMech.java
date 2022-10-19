@@ -28,6 +28,7 @@ public abstract class IntervalMech extends SubsystemBase {
         this.nextPeriod = determineNextPeriod();
 
         stop();
+        startupTimer.start();
     }
 
     public IntervalMech(int startupDelay, int period, int holdDuration) {
@@ -36,7 +37,6 @@ public abstract class IntervalMech extends SubsystemBase {
 
     public void periodic() {
         // Wait for startupDelay seconds before running
-        startupTimer.start();
         if (!startupTimer.hasElapsed(startupDelay)) return;
 
         intervalTimer.start();
