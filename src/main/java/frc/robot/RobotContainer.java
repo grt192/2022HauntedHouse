@@ -34,49 +34,23 @@ public class RobotContainer {
     private final int TEMP_HOLD_DURATION = 5;
 
     // LOWER FLOOR
-    private final IntervalSolenoid aidenMech = new IntervalSolenoid(new MotorControllerSolenoid(AIDEN_ID), TEMP_DELAY, 3, 3, 1);
-    // private final IntervalSolenoid ryanMech = new IntervalSolenoid(new MotorControllerSolenoid(RYAN_ID), TEMP_DELAY, 60, 60, 10);
-    private final IntervalSolenoid matthewMech = new IntervalSolenoid(new MotorControllerSolenoid(MATTHEW_ID), TEMP_DELAY, 10, 10, 3);
+    private final IntervalSolenoid aidenMech = new IntervalSolenoid(new MotorControllerSolenoid(AIDEN_ID), 0, 3, 3, 1);
+    private final IntervalSolenoid ryanMech = new IntervalSolenoid(new MotorControllerSolenoid(RYAN_ID), 2, 30, 30, 10);
+    private final IntervalSolenoid matthewMech = new IntervalSolenoid(new MotorControllerSolenoid(MATTHEW_ID), 4, 10, 10, 3);
 
     // UPPER FLOOR
     
-    // private final IntervalSolenoid shiraMech = new IntervalSolenoid(new MotorControllerSolenoid(SHIRA_ID), TEMP_DELAY, 0, 0, 1);
+    // private final IntervalSolenoid shiraMech = new IntervalSolenoid(new MotorControllerSolenoid(SHIRA_ID), 6, 0, 0, 1);
     // private final IntervalSolenoid oliviaMech = new IntervalSolenoid(
-        // new RepeaterSolenoids(new MotorControllerSolenoid(OLIVIA_ID), 3), TEMP_DELAY, 20, 20, 10); // hold repeater solenoid for 10 sec; repeat again after 20 sec 
+        // new RepeaterSolenoids(new MotorControllerSolenoid(OLIVIA_ID), 3), 8, 20, 20, 10); // hold repeater solenoid for 10 sec; repeat again after 20 sec 
 
-    // private final IntervalSolenoid jacobMech = new IntervalSolenoid(new MotorControllerSolenoid(JACOB_ID), TEMP_DELAY, TEMP_PERIOD, TEMP_PERIOD, TEMP_HOLD_DURATION);
+    private final IntervalSolenoid jacobMech = new IntervalSolenoid(new MotorControllerSolenoid(JACOB_ID), 1, 15, 15, 5);
 
     // STAIRS
-    //private final IntervalSolenoid keplerMech = new IntervalSolenoid(new PCMSolenoid(KEPLER_ID), TEMP_DELAY, 10, 10, 5);
+    //private final IntervalSolenoid keplerMech = new IntervalSolenoid(new PCMSolenoid(KEPLER_ID), 3, 10, 10, 5);
 
     // PORCH
-    private final IntervalSolenoid julianMech = new IntervalSolenoid(new PCMSolenoid(JULIAN_ID), TEMP_DELAY, 15, 15, 1);
-
-    /*
-     * private final IntervalSolenoid tylerMech = new IntervalSolenoid(new
-     * MotorControllerSolenoid(0), 2, 15, 25, 5);
-     * 
-     * private final IntervalSolenoid ethanMech = new IntervalSolenoid(new
-     * MotorControllerSolenoid(1), 4, 6, 15, 5);
-     * 
-     * private final IntervalSolenoid roMech = new IntervalSolenoid(new
-     * MotorControllerSolenoid(2), 6, 6, 15, 5);
-     * 
-     * private final IntervalSolenoid mattyMech = new IntervalSolenoid(
-     * new DelaySolenoids(new MotorControllerSolenoid(12), new
-     * MotorControllerSolenoid(13), 1), 8, 8, 15, 5);
-     * 
-     * private final IntervalSolenoid alexMech = new IntervalSolenoid(
-     * new ParallelSolenoids(new MotorControllerSolenoid(14), new
-     * MotorControllerSolenoid(15)), 10, 7, 15, 4);
-     * 
-     * private final IntervalSolenoid lucyMech = new IntervalSolenoid(new
-     * MotorControllerSolenoid(3), 12, 7, 15, 10);
-     * 
-     * private final IntervalSolenoid aarushMech = new IntervalSolenoid(
-     * new ParallelSolenoids(new PCMSolenoid(0, true), new RepeaterSolenoids(new
-     * PCMSolenoid(1, true), 3)), 14, 15, 28, 12);
-     */
+    private final IntervalSolenoid julianMech = new IntervalSolenoid(new PCMSolenoid(JULIAN_ID, true), 5, 12, 12, 5);
 
     private final ExampleAutoCommand autoCommand = new ExampleAutoCommand();
 

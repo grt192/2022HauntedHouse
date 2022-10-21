@@ -19,9 +19,9 @@ public final class Constants {
     public static final int MATTHEW_ID = 15;
 
     // UPPER FLOOR
-    public static final int SHIRA_ID = 13;
+    public static final int SHIRA_ID = 12;
     public static final int OLIVIA_ID = 14;
-    public static final int JACOB_ID = 12;
+    public static final int JACOB_ID = 13;
 
     // STAIRS
     public static final int KEPLER_ID = 0; // pcm
