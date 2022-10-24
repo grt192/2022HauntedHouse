@@ -44,9 +44,8 @@ public class RobotContainer {
 
     // UPPER FLOOR
     
-    // private final IntervalSolenoid shiraMech = new IntervalSolenoid(new MotorControllerSolenoid(SHIRA_ID), 6, 0, 0, 1);
-    // private final IntervalSolenoid oliviaMech = new IntervalSolenoid(
-        // new RepeaterSolenoids(new MotorControllerSolenoid(OLIVIA_ID), 3), 8, 20, 20, 10); // hold repeater solenoid for 10 sec; repeat again after 20 sec 
+    private final IntervalSolenoid shiraMech = new IntervalSolenoid(new MotorControllerSolenoid(SHIRA_ID), 2, 2, 2, 3);
+    private final IntervalSolenoid oliviaMech = new IntervalSolenoid(new MotorControllerSolenoid(OLIVIA_ID), 2, 8, 8, 5); // hold repeater solenoid for 10 sec; repeat again after 20 sec 
 
     private final IntervalSolenoid jacobMech = new IntervalSolenoid(new MotorControllerSolenoid(JACOB_ID), 1, 15, 15, 5);
 
