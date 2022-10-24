@@ -1,5 +1,6 @@
 package frc.robot.subsystems;
 
+import edu.wpi.first.networktables.EntryNotification;
 import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
@@ -19,6 +20,8 @@ public abstract class IntervalMech extends SubsystemBase {
 
     int nextPeriod;
 
+    boolean enableMech;
+
     public IntervalMech(int startupDelay, int minPeriod, int maxPeriod, int holdDuration) {
         this.maxPeriod = maxPeriod;
         this.minPeriod = minPeriod;
@@ -35,6 +38,8 @@ public abstract class IntervalMech extends SubsystemBase {
         this.running = false;
         
         this.nextPeriod = determineNextPeriod();
+
+        this.enableMech = true;
     }
 
     public IntervalMech(int startupDelay, int period, int holdDuration) {
@@ -42,6 +47,11 @@ public abstract class IntervalMech extends SubsystemBase {
     }
 
     public void periodic() {
+
+        if (!enableMech) {
+            return;
+        }
+
         if (!firstLoop) {
             timer.start();
             stop(); // set to OFF position
@@ -67,6 +77,11 @@ public abstract class IntervalMech extends SubsystemBase {
 
             }
         }
+    }
+
+    // for shuffleboard
+    public void toggle(EntryNotification change) {
+        this.enableMech = change.value.getBoolean();
     }
 
     // run mechanism; ie. extend pneumatic, run motors

@@ -4,11 +4,15 @@
 
 package frc.robot;
 
+import edu.wpi.first.networktables.EntryListenerFlags;
 import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj.XboxController;
+import edu.wpi.first.wpilibj.shuffleboard.BuiltInWidgets;
+import edu.wpi.first.wpilibj.shuffleboard.Shuffleboard;
+import edu.wpi.first.wpilibj.shuffleboard.ShuffleboardTab;
 import edu.wpi.first.wpilibj2.command.Command;
 import frc.robot.commands.ExampleAutoCommand;
-import frc.robot.subsystems.IntervalMotor;
+import frc.robot.subsystems.IntervalMech;
 import frc.robot.subsystems.IntervalSolenoid;
 import frc.robot.subsystems.solenoids.DelaySolenoids;
 import frc.robot.subsystems.solenoids.MotorControllerSolenoid;
@@ -16,6 +20,7 @@ import frc.robot.subsystems.solenoids.PCMSolenoid;
 import frc.robot.subsystems.solenoids.ParallelSolenoids;
 import frc.robot.subsystems.solenoids.RepeaterSolenoids;
 import static frc.robot.Constants.*;
+
 
 /**
  * This class is where the bulk of the robot should be declared. Since
@@ -27,8 +32,7 @@ import static frc.robot.Constants.*;
 public class RobotContainer {
     // The robot's subsystems and commands are defined here...
 
-    // temporary placeholder values
-    // also replace port #s
+    // placeholder values
     private final int TEMP_DELAY = 2;
     private final int TEMP_PERIOD = 15;
     private final int TEMP_HOLD_DURATION = 5;
@@ -60,6 +64,16 @@ public class RobotContainer {
     public RobotContainer() {
         // Configure the button bindings
         configureButtonBindings();
+
+        // initialize shuffleboard entries
+        createShuffleboardToggle(aidenMech, "aiden");
+        createShuffleboardToggle(ryanMech, "ryan");
+        createShuffleboardToggle(matthewMech, "matthew");
+        // createShuffleboardToggle(shiraMech, "shira");
+        // createShuffleboardToggle(oliviaMech, "olivia");
+        createShuffleboardToggle(jacobMech, "jacob");
+        // createShuffleboardToggle(keplerMech, "kepler");
+        createShuffleboardToggle(julianMech, "julian");
     }
 
     /**
@@ -80,4 +94,10 @@ public class RobotContainer {
         // An ExampleCommand will run in autonomous
         return autoCommand;
     }
+
+    public void createShuffleboardToggle(IntervalMech mech, String name) {
+        ShuffleboardTab tab = Shuffleboard.getTab("mechs");
+        tab.add(name, true).withWidget(BuiltInWidgets.kToggleSwitch).getEntry().addListener(mech::toggle, EntryListenerFlags.kUpdate);
+    }
+
 }
