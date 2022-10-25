@@ -50,7 +50,7 @@ public class RobotContainer {
     private final IntervalSolenoid jacobMech = new IntervalSolenoid(new MotorControllerSolenoid(JACOB_ID), 1, 15, 15, 5);
 
     // STAIRS
-    //private final IntervalSolenoid keplerMech = new IntervalSolenoid(new PCMSolenoid(KEPLER_ID), 3, 10, 10, 5);
+    private final IntervalSolenoid keplerMech = new IntervalSolenoid(new PCMSolenoid(KEPLER_ID, true), 3, 10, 10, 5);
 
     // PORCH
     private final IntervalSolenoid julianMech = new IntervalSolenoid(new PCMSolenoid(JULIAN_ID, true), 5, 12, 12, 5);
