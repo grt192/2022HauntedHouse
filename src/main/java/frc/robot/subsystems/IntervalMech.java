@@ -47,8 +47,10 @@ public abstract class IntervalMech extends SubsystemBase {
     }
 
     public void periodic() {
-
+        
+        // if mech is disabled
         if (!enableMech) {
+            stop(); // set to OFF position
             return;
         }
 
