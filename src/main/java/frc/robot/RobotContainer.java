@@ -38,13 +38,13 @@ public class RobotContainer {
     private final int TEMP_HOLD_DURATION = 5;
 
     // LOWER FLOOR
-    private final IntervalSolenoid aidenMech = new IntervalSolenoid(new MotorControllerSolenoid(AIDEN_ID), 0, 3, 3, 1);
+    private final IntervalSolenoid aidenMech = new IntervalSolenoid(new MotorControllerSolenoid(AIDEN_ID), 0, 1, 1, 1);
     private final IntervalSolenoid ryanMech = new IntervalSolenoid(new MotorControllerSolenoid(RYAN_ID), 2, 30, 30, 10);
     private final IntervalSolenoid matthewMech = new IntervalSolenoid(new MotorControllerSolenoid(MATTHEW_ID), 4, 10, 10, 3);
 
     // UPPER FLOOR
     
-    private final IntervalSolenoid shiraMech = new IntervalSolenoid(new MotorControllerSolenoid(SHIRA_ID), 2, 2, 2, 3);
+    private final IntervalSolenoid shiraMech = new IntervalSolenoid(new MotorControllerSolenoid(SHIRA_ID), 2, 1, 1, 1);
     private final IntervalSolenoid oliviaMech = new IntervalSolenoid(new MotorControllerSolenoid(OLIVIA_ID), 2, 8, 8, 5); // hold repeater solenoid for 10 sec; repeat again after 20 sec 
 
     private final IntervalSolenoid jacobMech = new IntervalSolenoid(new MotorControllerSolenoid(JACOB_ID), 1, 15, 15, 5);
@@ -68,10 +68,10 @@ public class RobotContainer {
         createShuffleboardToggle(aidenMech, "aiden");
         createShuffleboardToggle(ryanMech, "ryan");
         createShuffleboardToggle(matthewMech, "matthew");
-        // createShuffleboardToggle(shiraMech, "shira");
-        // createShuffleboardToggle(oliviaMech, "olivia");
+        createShuffleboardToggle(shiraMech, "shira");
+        createShuffleboardToggle(oliviaMech, "olivia");
         createShuffleboardToggle(jacobMech, "jacob");
-        // createShuffleboardToggle(keplerMech, "kepler");
+        createShuffleboardToggle(keplerMech, "kepler");
         createShuffleboardToggle(julianMech, "julian");
     }
 
